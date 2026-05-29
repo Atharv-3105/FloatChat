@@ -13,8 +13,8 @@ class Settings(BaseSettings):
     
     #Server
     HOST: str = Field(default = "0.0.0.0", description = "Server Host")
-    PORT: str = Field(default = 8000, description = "Server port")
-    WORKERS: str = Field(default = 1, description = "Number of workers")
+    PORT: int = Field(default = 8000, description = "Server port")
+    WORKERS: int = Field(default = 1, description = "Number of workers")
     
     #Database
     DATABASE_URL : str = Field(default = "sqlite+aiosqlite:///./data/processed/argodata.db",
@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     #LLM Models
     GEMINI_API_KEY: Optional[str]  = Field(default=None, description="Gemini API Key")
     OPENAI_API_KEY: Optional[str]  = Field(default=None, description="OpenAI API Key")
-    
+    SARVAM_API_KEY: Optional[str]  = None
     #Query Limits
     MAX_QUERY_LENGTH: int = Field(default = 500, description="Max query string length")
     MAX_RESULTS: int = Field(default = 1000, description = "Max query results")
@@ -43,11 +43,12 @@ class Settings(BaseSettings):
     LOG_LEVEL: str = Field(default = "INFO", description = "Logging level")
     LOG_FORMAT: str = Field(default = "%(asctime)s - %(name)s - %(levelname)s - %(message)s",description="Log Format")
     
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        case_sensitive = True
     
-class Config:
-    env_file = ".env"
-    env_file_encoding = "utf-8"
-    case_sensitive = True
+
     
 
 @lru_cache()

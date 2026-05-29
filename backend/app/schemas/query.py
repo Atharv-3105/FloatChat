@@ -14,6 +14,7 @@ class ChartData(BaseModel):
     type: str = "line"
     x: List = []
     y: List = []
+    ids: Optional[List[str]] = None # Added to map points to float_ids
     x_label: Optional[str] = None
     y_label: Optional[str] = None 
     title: Optional[str] = None 

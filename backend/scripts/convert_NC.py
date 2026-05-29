@@ -265,7 +265,7 @@ def main():
     all_data = []
     
     # TEST MODE - first 3 files
-    test_mode = True
+    test_mode = False
     if test_mode:
         print("🧪 TEST MODE: Processing first 3 files only")
         print("   Set test_mode = False to process ALL files\n")

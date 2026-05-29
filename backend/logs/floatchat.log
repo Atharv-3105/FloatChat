@@ -1,0 +1,191 @@
+2026-05-05 19:04:48 | ERROR    | FloatChat:generate_sql:133 | LLM chain for SQL generation failed: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\grpc_helpers_async.py", line 86, in __await__
+    response = yield from self._call.__await__()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\grpc\aio\_call.py", line 329, in __await__
+    raise _create_rpc_error(
+grpc.aio._call.AioRpcError: <AioRpcError of RPC that terminated with:
+	status = StatusCode.NOT_FOUND
+	details = "models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+	debug_error_string = "UNKNOWN:Error received from peer ipv4:216.239.36.223:443 {grpc_message:"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.", grpc_status:5}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Atharva\MajorProject\FloatChat\backend\app\services\llm_service.py", line 115, in generate_sql
+    raw_response = await chain.arun(user_query)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\_api\deprecation.py", line 189, in awarning_emitting_wrapper
+    return await wrapped(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain\chains\base.py", line 672, in arun
+    await self.acall(
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\_api\deprecation.py", line 189, in awarning_emitting_wrapper
+    return await wrapped(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain\chains\base.py", line 430, in acall
+    return await self.ainvoke(
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain\chains\base.py", line 214, in ainvoke
+    raise e
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain\chains\base.py", line 205, in ainvoke
+    await self._acall(inputs, run_manager=run_manager)
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain\chains\llm.py", line 297, in _acall
+    response = await self.agenerate([inputs], run_manager=run_manager)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain\chains\llm.py", line 164, in agenerate
+    return await self.llm.agenerate_prompt(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 787, in agenerate_prompt
+    return await self.agenerate(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 747, in agenerate
+    raise exceptions[0]
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 923, in _agenerate_with_cache
+    result = await self._agenerate(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 1020, in _agenerate
+    response: GenerateContentResponse = await _achat_with_retry(
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 231, in _achat_with_retry
+    return await _achat_with_retry(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\__init__.py", line 418, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\__init__.py", line 185, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 229, in _achat_with_retry
+    raise e
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 222, in _achat_with_retry
+    return await generation_method(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\async_client.py", line 406, in generate_content
+    response = await rpc(
+               ^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\retry\retry_unary_async.py", line 231, in retry_wrapped_func
+    return await retry_target(
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\retry\retry_unary_async.py", line 163, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\retry\retry_unary_async.py", line 158, in retry_target
+    return await target()
+           ^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\grpc_helpers_async.py", line 89, in __await__
+    raise exceptions.from_grpc_error(rpc_error) from rpc_error
+google.api_core.exceptions.NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-05-05 19:04:48 | WARNING  | FloatChat:stream_query_results:101 | Handled query error: LLM chain failed: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-05-05 23:32:43 | ERROR    | FloatChat:generate_sql:124 | LLM chain for SQL generation failed: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\grpc_helpers_async.py", line 86, in __await__
+    response = yield from self._call.__await__()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\grpc\aio\_call.py", line 329, in __await__
+    raise _create_rpc_error(
+grpc.aio._call.AioRpcError: <AioRpcError of RPC that terminated with:
+	status = StatusCode.NOT_FOUND
+	details = "models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+	debug_error_string = "UNKNOWN:Error received from peer ipv4:216.239.32.223:443 {grpc_status:5, grpc_message:"models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Atharva\MajorProject\FloatChat\backend\app\services\llm_service.py", line 101, in generate_sql
+    raw_response = await sql_chain.ainvoke({
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\runnables\base.py", line 2921, in ainvoke
+    input = await asyncio.create_task(part(), context=context)  # type: ignore
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 298, in ainvoke
+    llm_result = await self.agenerate_prompt(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 787, in agenerate_prompt
+    return await self.agenerate(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 747, in agenerate
+    raise exceptions[0]
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 923, in _agenerate_with_cache
+    result = await self._agenerate(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 1020, in _agenerate
+    response: GenerateContentResponse = await _achat_with_retry(
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 231, in _achat_with_retry
+    return await _achat_with_retry(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\__init__.py", line 418, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\__init__.py", line 185, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Python\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 229, in _achat_with_retry
+    raise e
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 222, in _achat_with_retry
+    return await generation_method(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\async_client.py", line 406, in generate_content
+    response = await rpc(
+               ^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\retry\retry_unary_async.py", line 231, in retry_wrapped_func
+    return await retry_target(
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\retry\retry_unary_async.py", line 163, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 216, in _retry_error_helper
+    raise final_exc from source_exc
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\retry\retry_unary_async.py", line 158, in retry_target
+    return await target()
+           ^^^^^^^^^^^^^^
+  File "D:\Atharva\MajorProject\FloatChat\backend\venv\Lib\site-packages\google\api_core\grpc_helpers_async.py", line 89, in __await__
+    raise exceptions.from_grpc_error(rpc_error) from rpc_error
+google.api_core.exceptions.NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-05-05 23:32:43 | WARNING  | FloatChat:process_query:81 | Handled query error: LLM chain failed: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.

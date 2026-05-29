@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:root {
+  /* FloatChat Light Theme */
+  --theme-bg-start: #005c97;
+  --theme-bg-end: #363795;
+  --theme-card-bg: rgba(255, 255, 255, 0.1);
+  --theme-card-border: rgba(255, 255, 255, 0.2);
+  --theme-text-primary: #ffffff;
+  --theme-text-secondary: #e0e0e0;
+  --theme-accent: #36a2eb; /* A bright blue for accents */
+  --theme-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+  --sans: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 16px/1.5 var(--sans);
+  letter-spacing: 0.18px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(45deg, var(--theme-bg-start), var(--theme-bg-end));
+  background-attachment: fixed;
+  color: var(--theme-text-primary);
+}
+
+#root {
+  min-height: 100svh;
+}
+
+/* --- Component Overrides --- */
+
+/* Main Title */
+h1 {
+  color: var(--theme-text-primary);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Frosted Glass Card Effect */
+.card {
+  background: var(--theme-card-bg) !important;
+  border: 1px solid var(--theme-card-border) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--theme-shadow);
+  color: var(--theme-text-primary);
+}
+
+.card-header {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-bottom: 1px solid var(--theme-card-border) !important;
+  color: var(--theme-text-primary) !important;
+  font-weight: 500;
+}
+
+/* Tabs */
+.nav-tabs {
+  border-bottom: 1px solid var(--theme-card-border) !important;
+}
+.nav-tabs .nav-link {
+  background: transparent !important;
+  border: none !important;
+  color: var(--theme-text-secondary) !important;
+}
+.nav-tabs .nav-link.active {
+  color: var(--theme-text-primary) !important;
+  border-bottom: 2px solid var(--theme-accent) !important;
+}
+
+/* Chat Messages */
+.card.bg-primary {
+  background: var(--theme-accent) !important;
+}
+.card.bg-light {
+  background: rgba(0, 0, 0, 0.2) !important;
+  color: var(--theme-text-primary) !important;
+}
+
+/* Form Inputs */
+.form-control {
+  background-color: rgba(0,0,0,0.2) !important;
+  color: var(--theme-text-primary) !important;
+  border: 1px solid var(--theme-card-border) !important;
+}
+.form-control::placeholder {
+  color: var(--theme-text-secondary) !important;
+}
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(var(--theme-accent), 0.5) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--theme-accent) !important;
+  border-color: var(--theme-accent) !important;
+}
+
+/* Tables */
+.table {
+  color: var(--theme-text-primary) !important;
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(0,0,0,0.1);
+  color: var(--theme-text-primary);
+}
+.table-hover > tbody > tr:hover > * {
+  background-color: rgba(0,0,0,0.2);
+  color: var(--theme-text-primary);
+}
+th {
+  color: var(--theme-text-primary);
+}
